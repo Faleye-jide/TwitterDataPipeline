@@ -3,7 +3,7 @@
  ### _Before you get started, you need to have some prerequistes to use the simple app._
 
 ---
-- Create an accounton twitter developer 
+- Create an account on twitter developer 
 - Create the following
     - Consumer secret key
     - Access token
