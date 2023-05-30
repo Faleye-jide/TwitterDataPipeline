@@ -10,7 +10,7 @@
     - Access token secret
 - Install the required dependencies using the command below
 ```python
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 - Finally, for entry into this application, run below commands
