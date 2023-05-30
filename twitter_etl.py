@@ -99,9 +99,3 @@ class TwitterDataPipeline:
         df.to_csv(file_path)
 
 
-if __name__ == "__main__":
-    # an instance of twitter_etl
-    config_file = "secrets.yml"
-    twitter = TwitterDataPipeline(config_file)
-    print(twitter)
-    twitter.extract()
