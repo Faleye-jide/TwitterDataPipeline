@@ -4,6 +4,7 @@ import yaml
 from yaml.loader import SafeLoader
 import json
 import os
+from argparse import ArgumentParser
 
 
 class TwitterDataPipeline:
@@ -91,12 +92,15 @@ class TwitterDataPipeline:
         
     def get_file_path(self):
         parent_path = os.path.abspath(os.getcwd())
-        folder_name = "Extracted_data"
+        args = self.arguments_parser()
+        
+        folder_name = args.folder
         # print("BASE_DIR:", parent_path)
         folder_path = os.path.join(parent_path, folder_name)
         # print("FOLDER_PATH:", folder_path)
         folder = self.create_folder(folder_path)
-        file_name = "twitter.csv"
+        file_name, file_ext = args.file_name, args.file_ext
+        file_name = file_name + file_ext
         file_path = os.path.join(folder_path, file_name)
         # print("FILE_PATH:", file_path)
         return file_path
@@ -105,9 +109,24 @@ class TwitterDataPipeline:
         # print(df.head())
         # store data to csv
         # send data to csv format
-        df.to_csv(file_path)
+        if file_path.endswith('csv'):
+            df.to_csv(file_path)
         
     def load_to_excel(self, df, file_path):
-        df.to_excel(file_path)
+        if file_path.endswith('.xlsx'):
+            df.to_excel(file_path)
+        
+    def arguments_parser(self):
+        args = ArgumentParser("Getting user inputs dynamically for the etl pipeline")
+        args.add_argument("-fn", "--file_name", required=True,
+                          help="name of the file")
+        args.add_argument("-f", "--folder", required=True,
+                          help="name of the folder")
+        args.add_argument("-fe", "--file_ext", required=True,
+                          help="extension of the file")
+        
+        parser = args.parse_args()
+        
+        return parser
         
 
