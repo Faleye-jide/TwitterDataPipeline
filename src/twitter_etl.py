@@ -57,6 +57,9 @@ class TwitterDataPipeline:
         return auth 
 
     def extract(self):
+        """
+        Extracts data from the api and then creates a pandas dataframe
+        """
         # call the authenticate function
         auth = self.authenticate()
         # create an api instance 
@@ -83,19 +86,28 @@ class TwitterDataPipeline:
             item_list.append(result)
 
         df = pd.DataFrame(item_list)
-        # print(df.head())
-        # store data to csv
+        
+        return df
+        
+    def get_file_path(self):
         parent_path = os.path.abspath(os.getcwd())
         folder_name = "Extracted_data"
-        print("BASE_DIR:", parent_path)
+        # print("BASE_DIR:", parent_path)
         folder_path = os.path.join(parent_path, folder_name)
-        print("FOLDER_PATH:", folder_path)
+        # print("FOLDER_PATH:", folder_path)
         folder = self.create_folder(folder_path)
         file_name = "twitter.csv"
         file_path = os.path.join(folder_path, file_name)
-        print("FILE_PATH:", file_path)
-        
+        # print("FILE_PATH:", file_path)
+        return file_path
+    
+    def load_to_csv(self, df, file_path):
+        # print(df.head())
+        # store data to csv
         # send data to csv format
         df.to_csv(file_path)
-
+        
+    def load_to_excel(self, df, file_path):
+        df.to_excel(file_path)
+        
 
