@@ -15,7 +15,7 @@ class TwitterDataPipeline:
         
     def load_config(self):
         """
-        Function to load cobfig file written in yaml file
+        Function to load config file written in yaml file
 
         Returns:
             _type_: credential information
