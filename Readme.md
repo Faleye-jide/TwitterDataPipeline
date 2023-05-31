@@ -9,6 +9,11 @@
     - Access token
     - Access token secret
 - Install the required dependencies using the command below
+
+```python
+git clone https://github.com/Faleye-jide/TwitterDataPipeline.git
+cd TWitterDataPipeline
+```
 ```python
 pip install -r requirements.txt
 ```
