@@ -22,9 +22,9 @@ class TwitterDataPipeline:
             _type_: credential information
         """
         with open(self.config_file, 'r') as out_file:
-            config = yaml.load(out_file, Loader=SafeLoader)
+            credential = yaml.load(out_file, Loader=SafeLoader)
 
-        return config
+        return credential
         # consumer_key, consumer_secret = config['Consumer Keys']['Key'], config['Consumer Keys']['Secret']
         # access_token, access_token_secret = config['Access Keys']['Token'], config['Access Keys']['Secret']
 
